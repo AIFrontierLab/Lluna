@@ -1,0 +1,12 @@
+{
+  "seed": 42,
+  "heads": {"epochs": 30, "learning_rate": 0.01, "weight_decay": 0.0001, "batch_size": 64},
+  "graph": {"floor": 0.0, "temperature": 0.5, "top_k": null, "self_loop": 1.0},
+  "model": {"hidden_dim": 128, "common_dim": 256, "dropout": 0.1, "gnn_layers": 1, "residual_scale_init": 0.1},
+  "training": {
+    "epochs": 100, "patience": 15, "batch_size": 64, "eval_batch_size": 256,
+    "learning_rate": 0.001, "weight_decay": 0.001, "gradient_clip": 5.0,
+    "class_balance": false, "selection_metric": "accuracy",
+    "aux_weight": 0.2, "pcc_weight": 0.1, "pcc_deadzone": 0.0, "pcc_power": 1.0
+  }
+}
