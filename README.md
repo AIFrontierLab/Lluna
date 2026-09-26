@@ -14,9 +14,14 @@ python example.py
 python -m unittest discover -s tests -v
 ```
 
-The example creates synthetic features and runs training and evaluation through
-the same pipeline used for supplied feature datasets. For a regression example,
-run `python example.py --task regression --output demo-regression`.
+The example creates synthetic features and runs the same pipeline used for
+supplied feature datasets. Other input types can be exercised with:
+
+```bash
+python example.py --task regression --output demo-regression
+python example.py --task candidate --sampling chain --output demo-qa
+python example.py --sites --sampling chain --output demo-sites
+```
 
 ## Train and evaluate
 
@@ -36,6 +41,7 @@ views. Evaluation reports every test view and Mean-Missing in JSON and CSV.
 - `lluna/graph.py`: prediction agreement and sparse graph construction.
 - `lluna/model.py`: expert adapters, common message passing, and residual prediction.
 - `lluna/pcc.py`: modality views, availability masks, and one-way PCC.
+- `lluna/sampling.py`: full-view or importance-corrected random-chain training.
 - `lluna/data.py`: feature bundles and partition validation.
 - `lluna/runner.py`: expert heads, graph, training, checkpoint selection and evaluation.
 - `lluna/metrics.py`: classification and regression metrics.
@@ -46,10 +52,12 @@ the poorer view's pooled common representation with a detached richer-view
 representation. Predictions combine the private output and a learned, bounded
 common residual.
 
-The pipeline starts from cached vectors and supports classification and scalar
-regression. It enumerates all nonempty modality subsets; sparse view sampling,
-raw-data extraction, candidate-answer adapters, and ordered-site medical adapters
-are not included. Default settings are examples, not benchmark reproduction recipes.
+The pipeline supports classification, scalar regression, variable-choice QA,
+and ordered multi-site features. Training can enumerate all views or sample
+modality-removal chains; evaluation always covers all nonempty views. Sample and
+optional subject/group partitions are checked for overlap. See [DATA.md](DATA.md)
+for input formats and [CONFIG.md](CONFIG.md) for training controls.
 
-Dataset preprocessing, additional task adapters, and benchmark experiment
-configurations will be released upon publication.
+Inputs are cached frozen features. Raw-data extraction and dataset-specific
+benchmark configurations will be released upon publication. Included defaults
+demonstrate the pipeline and are not benchmark reproduction recipes.
