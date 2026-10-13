@@ -1,8 +1,8 @@
 # Lluna
 
-A PyTorch implementation of multi-expert collaboration with a
-agreement graph, common/private residual prediction, and progressive common
-consistency (PCC).
+A PyTorch implementation of multi-expert collaboration with a fixed
+agreement graph, common/private residual prediction, and Progressive Collaboration
+Consistency (PCC).
 
 ## Quick start
 
